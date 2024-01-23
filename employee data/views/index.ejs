@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Information</title>
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+
+    </style>
+    
+</head>
+<body class="container">
+
+    <h1>Emplyees Information</h1>
+    <ul>
+        <% employees.forEach(employee => { %>
+            <li><%= employee.name %>, <%= employee.country %>, <%= employee.state %>, <%= employee.city %></li>
+        <%  }); %>
+    </ul>
+
+    <form action="/employees" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" required>
+        <br>
+        <label for="state">State:</label>
+        <input type="text" id="state" name="state">
+        <br>
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city">
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Emplyees List</h2>
+    <ul>
+        <% employees.forEach(employee => { %>
+            <li><%= employee.name %>, <%= employee.country %>, <%= employee.state %>, <%= employee.city %>
+            <form action="/delete/<%= employee.id %>" method="post">
+            <button type="submit">Delete</button>
+            </form>
+            </li>
+        <%  }); %>
+    </ul>
+
+    <p><%= message %></p>
+</body>
+</html>
